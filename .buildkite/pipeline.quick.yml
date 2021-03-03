@@ -16,6 +16,7 @@ steps:
           - "--device=ANDROID_5_0"
           - "--fail-fast"
           - "--appium-version=1.8.0"
+          - "--resilient"
     concurrency: 9
     concurrency_group: 'browserstack-app'
 
