@@ -41,7 +41,7 @@ open class BaseCrashyActivity : AppCompatActivity() {
         }
 
         findViewById<View>(R.id.btn_anr).setOnClickListener {
-            Thread.sleep(10000)
+            Thread.sleep(15000)
             showSnackbar()
         }
 
