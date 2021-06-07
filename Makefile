@@ -24,8 +24,8 @@ endif
 
 TEST_FIXTURE_NDK_VERSION ?= 16.1.4479499
 test-fixtures:
-	# Build the notifier
-	@./gradlew -PVERSION_NAME=9.9.9 clean assembleRelease publishToMavenLocal
+# 	# Build the notifier
+# 	@./gradlew -PVERSION_NAME=9.9.9 clean assembleRelease publishToMavenLocal
 
 	# Build the full test fixture
 	@./gradlew -PTEST_FIXTURE_NDK_VERSION=$(TEST_FIXTURE_NDK_VERSION) -p=features/fixtures/mazerunner/ assembleRelease

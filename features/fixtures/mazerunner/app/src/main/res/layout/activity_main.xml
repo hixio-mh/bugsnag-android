@@ -11,7 +11,8 @@
           android:layout_weight="0"
           android:ems="10"
           android:hint="Scenario name"
-          android:inputType="text" />
+          android:inputType="text"
+          android:text="AutoDetectAnrsTrueScenario" />
 
   <EditText
           android:id="@+id/scenario_metadata"
@@ -44,7 +45,7 @@
           android:ems="10"
           android:hint="Notify endpoint"
           android:inputType="text"
-          android:text="http://bs-local.com:9339/notify" />
+          android:text="http://192.168.178.53:9339" />
 
   <EditText
           android:id="@+id/session_endpoint"
@@ -54,7 +55,7 @@
           android:ems="10"
           android:hint="Session endpoint"
           android:inputType="text"
-          android:text="http://bs-local.com:9339/sessions" />
+          android:text="http://192.168.178.53:9339" />
 
   <Space
     android:layout_width="match_parent"
@@ -79,7 +80,8 @@
     android:layout_weight="0"
     android:ems="10"
     android:hint="Enter API Key"
-    android:inputType="text" />
+    android:inputType="text"
+    android:text="21d1d4be0a0916b4e08e76812ad085a6" />
 
   <Button
     android:id="@+id/clearUserData"
