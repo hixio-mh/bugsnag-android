@@ -1,0 +1,57 @@
+plugins {
+    id "com.android.test"
+    id "kotlin-android"
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+    ndkVersion "16.1.4479499"
+
+    defaultConfig {
+        minSdkVersion 29
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArgument "androidx.benchmark.suppressErrors", "EMULATOR"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            debuggable = true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    targetProjectPath = ":app"
+    properties["android.experimental.self-instrumenting"] = true
+}
+
+androidComponents {
+    beforeVariants(selector().all()) {
+        // Enable only the release buildType, since we only want to measure
+        // release build performance
+        enable = buildType == "release"
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "junit:junit:4.13.2"
+    implementation "androidx.test.ext:junit:1.1.2"
+    implementation "androidx.test.espresso:espresso-core:3.3.0"
+    implementation "androidx.test.uiautomator:uiautomator:2.2.0"
+    implementation "androidx.benchmark:benchmark-macro-junit4:1.1.0-alpha02"
+}
