@@ -3,6 +3,8 @@ package com.bugsnag.android.mazerunner.scenarios
 import android.content.Context
 import android.os.Build
 import android.os.StrictMode
+import com.bugsnag.android.Bugsnag
+import com.bugsnag.android.BugsnagThreadViolationListener
 import com.bugsnag.android.Configuration
 import java.net.HttpURLConnection
 import java.net.URL
@@ -34,5 +36,14 @@ internal class StrictModeNetworkScenario(
             )
         }
         // Android 9 not supported as of yet
+        val policy = StrictMode.ThreadPolicy.Builder().detectNetwork()
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            policy.penaltyDeath()
+        } else {
+            val listener = BugsnagThreadViolationListener(Bugsnag.getClient())
+            policy.penaltyListener(context.mainExecutor, listener)
+        }
+        StrictMode.setThreadPolicy(policy.build())
     }
 }
